@@ -4,6 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
+    updateDOM: './src/updateDOM.js',
+    TDObj: './src/TDObj.js',
+    btnLogic: './src/btnLogic.js',
+    addItemFormManager: './src/addItemFormManager.js',
     index: './src/index.js',
   },
   devtool: 'inline-source-map',
