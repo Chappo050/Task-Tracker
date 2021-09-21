@@ -12,8 +12,9 @@ function createItem() {
     const priority = document.getElementsByName('priority')[0];
     const note = document.getElementsByName('notes')[0];
   
+    const priorityValue = handlePriority(priority.value);
     //create new object using the form
-    const newItem = new ToDo(title.value, status.value, description.value, due.value, priority.value, note.value);
+    const newItem = new ToDo(title.value, status.value, description.value, due.value, priorityValue, note.value);
 
     itemArray.push(newItem);
     refreshDisplay(itemArray);
@@ -31,8 +32,10 @@ function clearForm(title, status, desc, due, priority, note){
     closeForm();
 }
 
-function getitemArray() {
-    return itemArray;
+function handlePriority(value){
+    if (value == 0) {return "LOW"}
+    else if (value == 1) {return"MED"}
+    else if (value == 2) {return "HIGH"}
 }
 
-export {createItem, getitemArray}
+export {createItem}

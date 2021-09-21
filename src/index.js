@@ -1,5 +1,5 @@
 import './style.css';
-import { createItem } from './itemManager';
+import { createItem } from './addItemFormManager';
 import { loadButtons } from './btnLogic';
 
 function component(){
