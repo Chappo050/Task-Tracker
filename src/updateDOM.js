@@ -18,8 +18,8 @@ function displayTD(array) {
 
       
         //Items div
-        const newItem = document.createElement('div');
-        newItem.classList.add('TDItem');
+        const newCard = document.createElement('div');
+        newCard.classList.add('TDItem');
 
         //Add each section of the new item inside their own divs
         const itemTitle = document.createElement('div');
@@ -37,21 +37,26 @@ function displayTD(array) {
         const itemNote = document.createElement('div');
         itemNote.innerHTML = element.note;
 
-        newItem.appendChild(itemTitle);
-        newItem.appendChild(itemDesc);
-        newItem.appendChild(itemDue);
-        newItem.appendChild(itemPriority);
-        newItem.appendChild(itemNote);
+        const itemBtn = element.createBtn();
+            itemBtn.innerHTML = '-'
+            itemBtn.classList.add('deleteItemBtn');
+
+        newCard.appendChild(itemBtn);
+        newCard.appendChild(itemTitle);
+        newCard.appendChild(itemDesc);
+        newCard.appendChild(itemDue);
+        newCard.appendChild(itemPriority);
+        newCard.appendChild(itemNote);
 
 
         if (element.status == 0){
-            toDoContainer.appendChild(newItem)
+            toDoContainer.appendChild(newCard)
         }
         else if (element.status == 1){
-            doingContainer.appendChild(newItem)
+            doingContainer.appendChild(newCard)
         }
         else if (element.status == 2){
-            doneContainer.appendChild(newItem)
+            doneContainer.appendChild(newCard)
         }
 
         

@@ -10,11 +10,6 @@ function loadButtons(TDLogic) {
     closeBtn.addEventListener('click', closeForm);
 }
 
-
-function deleteTDBtn(item) {
-    
-}
-
 function openForm() {
     document.getElementById("myForm").style.display = "block";
 
