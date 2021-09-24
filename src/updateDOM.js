@@ -1,6 +1,7 @@
 
 function refreshDisplay(array) {
     displayTD(array);
+    console.log('added');
 }
 
 //Adds a new to do card to the current project
