@@ -1,11 +1,23 @@
 import { ToDo } from "./TDObj"; 
 import {refreshDisplay} from "./updateDOM";
 import {closeForm} from "./btnLogic";
-import {setSavedItems, getArray} from "./savingStorage";
+import * as storage from './savingStorage';
 
 
 const saveString = 'savedItems';
-function createItem(index, array) {
+
+//loop through all items in the array and create (but not make new objects)
+function createAllItems(index, array){
+    if (array) {
+        array.forEach(element => {
+            createItem(index, array, false);
+        });  
+    }
+
+}
+
+
+function createItem(index, array, isNewItem) {
     const title = document.getElementsByName('title')[0];
     const status = document.getElementsByName('status')[0];
     const description = document.getElementsByName('desc')[0];
@@ -15,11 +27,14 @@ function createItem(index, array) {
     const priorityValue = handlePriority(priority.value);
 
     //create new object using the form
-    const newItem = new ToDo(title.value, status.value, description.value, due.value, priorityValue, note.value, index);
-    array.push(newItem);
-    setSavedItems(saveString, array);
-    refreshDisplay(array);
+    if (isNewItem) {
+        const newItem = new ToDo(title.value, status.value, description.value, due.value, priorityValue, note.value, index);
+        array.push(newItem);
+        storage.setSavedProjects(saveString, array);
+    }
 
+    refreshDisplay(array);
+    console.log(storage.getItems());
     clearForm(title, status, description, due, priority, note);
 
     index++;
@@ -43,7 +58,7 @@ function handlePriority(value){
 }
 
 function deleteItem(index){
-    const array = getArray();
+    const array = storage.getItems();
     const removeIndex = array.findIndex( item => item.index === index );
     console.log(`deleting index ${index}`)
 
@@ -55,4 +70,4 @@ function deleteItem(index){
 }
 
 
-export {createItem, deleteItem}
+export {createItem, deleteItem, createAllItems}
