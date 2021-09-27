@@ -13,30 +13,29 @@ function ProjectList(name, items){
 
 
 
-function ToDo(title, status, description, due, priority, note, index){
+function ToDo(title, status, description, due, priority, note){
        
-       const obj = this;
+      // const obj = this;
        
         this.title = title;
         this.status = status;
         this.description = description;
         this.due = due;
-        this.priority = priority;
         this.note = note;
-        this.index = index;
+        this.priority = priority;
 
 
-
+/*
         // Within the function, use obj to reference the instance, not this
         this.createBtn = function() {
-                var btn   = document.createElement('button');
-                btn.type  = 'button'
-                btn.index  = obj.index;
+                const btn = document.createElement('button');
+                btn.type = 'button'
+                btn.title = obj.title;
                 btn.onclick = function() {
-                        deleteItem(btn.index)
+                        deleteItem(btn.title)
         };
         return btn;
       };
-
+*/
 }
 export {ProjectList, ToDo}

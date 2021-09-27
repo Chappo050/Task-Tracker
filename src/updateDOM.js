@@ -1,3 +1,4 @@
+import { deleteItem } from "./addItemFormManager";
 
 function refreshDisplay(array) {
     displayTD(array);
@@ -38,7 +39,11 @@ function displayTD(array) {
         const itemNote = document.createElement('div');
         itemNote.innerHTML = element.note;
 
-        const itemBtn = element.createBtn();
+
+
+ 
+
+        const itemBtn = createButton(element);
             itemBtn.innerHTML = '-'
             itemBtn.classList.add('deleteItemBtn');
 
@@ -65,6 +70,16 @@ function displayTD(array) {
 
 
 }
+
+function createButton(element){
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.title = element.title;
+    console.log(btn.title)
+    btn.onclick = function(){deleteItem(btn.title)}
+    return btn;
+}
+
 
 function clearnContainers(todo, doing, done) {
     while (todo.firstChild) {

@@ -552,7 +552,7 @@ function ToDo(title, status, description, due, priority, note, index){
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createItem": () => (/* binding */ createItem),
+/* harmony export */   "createNewItem": () => (/* binding */ createNewItem),
 /* harmony export */   "deleteItem": () => (/* binding */ deleteItem)
 /* harmony export */ });
 /* harmony import */ var _TDObj__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TDObj */ "./src/TDObj.js");
@@ -564,7 +564,7 @@ __webpack_require__.r(__webpack_exports__);
 let itemArray = [];
 let index = 0;
 
-function createItem() {
+function createNewItem() {
     const title = document.getElementsByName('title')[0];
     const status = document.getElementsByName('status')[0];
     const description = document.getElementsByName('desc')[0];
@@ -831,7 +831,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function component(){
-    (0,_btnLogic__WEBPACK_IMPORTED_MODULE_2__.loadButtons)(_addItemFormManager__WEBPACK_IMPORTED_MODULE_1__.createItem);
+    (0,_btnLogic__WEBPACK_IMPORTED_MODULE_2__.loadButtons)(_addItemFormManager__WEBPACK_IMPORTED_MODULE_1__.createNewItem);
 }
 
 component();

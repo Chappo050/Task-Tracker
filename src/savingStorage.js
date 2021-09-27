@@ -1,6 +1,5 @@
 let itemArray = [];
 let projectArray = []
-let index = 0;
 
 //Stolen code that allows the saving of objects to local storage
 Storage.prototype.setObj = function(key, obj) {
@@ -18,15 +17,24 @@ function setSavedProjects(string, array) {
 }
 
 function getSavedProjects(string) {
-    return localStorage.getObj(string); //Acces the key the library has been saved to
+
+    if (localStorage.getObj(string)){
+        return localStorage.getObj(string);
+    }
+
+    else{
+        return itemArray;
+    }
+ //Acces the key the library has been saved to
 }
 
 function getItems(){
     return itemArray
 }
 
-function getIndex(){
-    return index
+
+function setItems(array){
+    itemArray = array;
 }
 
 function getProjects(){
@@ -37,8 +45,5 @@ function setProjects(array){
     projectArray = array;
 }
 
-function setItems(array){
-    itemArray = array;
-}
 
-export {setSavedProjects, getSavedProjects, getItems, getIndex, getProjects, setItems, setProjects}
+export {setSavedProjects, getSavedProjects, getItems, getProjects, setItems, setProjects}

@@ -1,9 +1,9 @@
 import * as storage from './savingStorage';
-import {createItem} from './addItemFormManager';
+import {createNewItem} from './addItemFormManager';
 
 function loadButtons() {
     const addItemBtn = document.getElementById('addItemBtn')
-    addItemBtn.addEventListener('click', () => (createItem(storage.getIndex(), storage.getItems(), true)) )
+    addItemBtn.addEventListener('click', () => (createNewItem(storage.getItems(), true)) )
 
     const popupAdd = document.getElementById('popupAdd')
     popupAdd.addEventListener('click', openForm);
