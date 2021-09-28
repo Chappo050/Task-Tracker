@@ -76,7 +76,7 @@ function createButton(element){
     btn.type = 'button';
     btn.title = element.title;
     console.log(btn.title)
-    btn.onclick = function(){deleteItem(btn.title)}
+    btn.onclick = function(){deleteItem(btn.title, 'savedItems')}
     return btn;
 }
 

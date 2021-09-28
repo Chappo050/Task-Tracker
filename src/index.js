@@ -10,7 +10,7 @@ function component(){
     //load array
     loadButtons();
     console.log(storage.getSavedProjects(saveString));
-    createAllItems(storage.getSavedProjects(saveString))
+    createAllItems(storage.getSavedProjects(saveString), saveString)
 }
 
 component();

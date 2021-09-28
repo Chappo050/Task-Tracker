@@ -3,30 +3,26 @@ import {refreshDisplay} from "./updateDOM";
 import {closeForm} from "./btnLogic";
 import * as storage from './savingStorage';
 
-
-const saveString = 'savedItems';
-
 //loop through all items in the array and create (but not make new objects)
-function createAllItems(array){
+function createAllItems(array, saveString){
     array.forEach(item => {
         console.log("hello")
-        createItemsFromStorage(item);
+        createItemsFromStorage(item, saveString);
     });  
     }
 
-function createItemsFromStorage(item){
+function createItemsFromStorage(item, saveString){
     const title = item.title;
     const status = item.status;
     const description = item.description;
     const due = item.due;
     const priority = item.priority;
     const note = item.note;
-    const priorityValue = handlePriority(priority.value);
 
     let array = storage.getSavedProjects();
 
     console.log(title)
-    var newItem = new ToDo(title, status, description, due, priorityValue, note);
+    var newItem = new ToDo(title, status, description, due, priority, note);
     array.push(newItem);
     storage.setSavedProjects(saveString, array);
 
@@ -35,8 +31,7 @@ function createItemsFromStorage(item){
     console.log(storage.getSavedProjects());
 }
 
-function createNewItem() {
-
+function createNewItem(saveString) {
     const title = document.getElementsByName('title')[0];
     const status = document.getElementsByName('status')[0];
     const description = document.getElementsByName('desc')[0];
@@ -77,7 +72,7 @@ function handlePriority(value){
     else if (value == 2) {return "HIGH"}
 }
 
-function deleteItem(title){
+function deleteItem(title, saveString){
     const array = storage.getItems();
     const removeTitle = array.findIndex( item => item.title === title );
     console.log(`deleting item ${title}`)

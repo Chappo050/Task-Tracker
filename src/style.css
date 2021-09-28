@@ -35,6 +35,7 @@ h1{
     grid-template-rows: 1fr;
     grid-template-areas: 'toDo doing done';
     margin: 50px;
+    padding-top: 100px;
 }
 
 #toDoContainer{
@@ -51,6 +52,11 @@ h1{
     grid-area: done;
     background: rgba(0, 128, 0, 0.7600)
 }
+
+/*-----------------------------------------------
+-----------------POP UP FORM STUFF---------------
+-----------------------------------------------*/
+
 
 
 /* Button used to open the contact form - fixed at the bottom of the page */
@@ -133,3 +139,55 @@ font-weight: 100;
   font-size: 10px;
   outline-width: 0ch;
 }
+
+
+/*-----------------------------------------------
+---------DROPDOWN LIST FOR PROJECT NAMES---------
+-----------------------------------------------*/
+
+ /* Dropdown Button */
+ .dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: left;
+  left: 50%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;} 
