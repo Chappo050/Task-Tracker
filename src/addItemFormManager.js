@@ -22,6 +22,17 @@ function createItemsFromStorage(item){
     const priority = item.priority;
     const note = item.note;
     const priorityValue = handlePriority(priority.value);
+
+    let array = storage.getSavedProjects();
+
+    console.log(title)
+    var newItem = new ToDo(title, status, description, due, priorityValue, note);
+    array.push(newItem);
+    storage.setSavedProjects(saveString, array);
+
+
+    refreshDisplay(array);
+    console.log(storage.getSavedProjects());
 }
 
 function createNewItem() {

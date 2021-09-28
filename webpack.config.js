@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
+    savingStorage: './src/savingStorage.js',
     updateDOM: './src/updateDOM.js',
     TDObj: './src/TDObj.js',
     btnLogic: './src/btnLogic.js',
