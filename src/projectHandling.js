@@ -1,22 +1,36 @@
 import * as storage from './savingStorage';
 import { ToDo, ProjectList } from "./TDObj"; 
+import {refreshProjectList} from './updateDOM';
 
 function addProject() {
     const newName = prompt('Please enter new projects name:', "New Project");
 
     //add a new project if the name is unique
-    if (!checkName(newName)) {
+    if (!checkName(newName) && newName) {
         const newProject = new ProjectList()
         let projectArray = storage.getSavedProjects();
         newProject.name = newName;
         projectArray.push(newProject);
         storage.setSavedProjects(projectArray);
+        refreshProjectList();
+        //Do DOM manipulation stuff for the dropdown box
+        //Reload page and stuff
     }
     else{
         alert('Clone found, please change the name of your project');
-        
     }
     
+
+}
+
+function deleteProject() {
+    const projectArray = storage.getSavedProjects();
+    const name = prompt('Enter the name of the project you want to delete');
+    const index = projectArray.findIndex( item => item.name === name );
+
+    projectArray.splice( index, 1 );
+    storage.setSavedProjects(projectArray)
+    refreshProjectList();
 
 }
 
@@ -36,4 +50,4 @@ function checkName(name){
 
 }
 
-export {addProject}
+export {addProject, deleteProject}

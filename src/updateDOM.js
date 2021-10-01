@@ -1,7 +1,9 @@
 import { deleteItem } from "./addItemFormManager";
+import * as storage from './savingStorage';
 
 function refreshDisplay(array) {
     displayTD(array);
+    refreshProjectList();
     console.log('added');
 }
 
@@ -94,4 +96,29 @@ function clearnContainers(todo, doing, done) {
     }
 }
 
-export {refreshDisplay};
+function refreshProjectList(){
+    const projectArray = storage.getSavedProjects();
+    const dropdown = document.getElementById('myDropdown');
+
+    //clear list
+    while (dropdown.firstChild) {
+        dropdown.removeChild(dropdown.firstChild);
+    }
+
+    //add to list
+    projectArray.forEach(element => {
+        const projectName = element.name;
+
+        const newLink = document.createElement('a');
+
+        newLink.href = "#";
+        newLink.id = projectName;
+        newLink.innerHTML = projectName;
+
+
+        dropdown.appendChild(newLink);
+    });
+}
+
+
+export {refreshDisplay, refreshProjectList};

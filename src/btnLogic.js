@@ -1,6 +1,6 @@
 import * as storage from './savingStorage';
 import {createNewItem} from './addItemFormManager';
-import {addProject} from './projectHandling';
+import {addProject, deleteProject} from './projectHandling';
 
 function loadButtons() {
     const addItemBtn = document.getElementById('addItemBtn')
@@ -17,6 +17,9 @@ function loadButtons() {
 
     const addProjectBtn = document.getElementById('AddProject');
     addProjectBtn.addEventListener('click', addProject);
+
+    const deleteProjectBtn = document.getElementById('deleteProject');
+    deleteProjectBtn.addEventListener('click', deleteProject)
 }
 
 function openForm() {
@@ -38,7 +41,6 @@ function closeForm() {
 toggle between hiding and showing the dropdown content */
 function toggleProjectList() {
   document.getElementById("myDropdown").classList.toggle("show");
-  console.log('hello')
 }
 
 // Close the dropdown menu if the user clicks outside of it
