@@ -4,11 +4,21 @@ import {closeForm} from "./btnLogic";
 import * as storage from './savingStorage';
 
 //loop through all items in the array and create (but not make new objects)
-function createAllItems(currentProject){
-    currentProject.forEach(item => {
-        console.log(`the current length is ${currentProject.length}`)
-        refreshDisplay(currentProject);
-    });  
+function createAllItems(){
+    let currentProject = storage.getSavedProjects()[storage.getCurrentIndex()]
+    console.log(currentProject);
+    if (currentProject) {
+
+        currentProject = currentProject.items;
+
+        currentProject.forEach(item => {
+            console.log(`the current length is ${currentProject.length}`)
+            refreshDisplay(currentProject);
+        });
+    }
+
+    else{ console.log('error') }
+    
     }
 
 

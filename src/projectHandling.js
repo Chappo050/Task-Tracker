@@ -1,6 +1,6 @@
 import * as storage from './savingStorage';
 import { ToDo, ProjectList } from "./TDObj"; 
-import {refreshProjectList} from './updateDOM';
+import {clearContainers, refreshDisplay, refreshProjectList} from './updateDOM';
 
 function addProject() {
     const newName = prompt('Please enter new projects name:', "New Project");
@@ -12,7 +12,11 @@ function addProject() {
         newProject.name = newName;
         projectArray.push(newProject);
         storage.setSavedProjects(projectArray);
-        refreshProjectList();
+
+        const index = storage.getCurrentIndex()
+        const allSavedProjects = storage.getSavedProjects();
+        const currentProjectItems = allSavedProjects[index].items;
+        clearContainers();
         //Do DOM manipulation stuff for the dropdown box
         //Reload page and stuff
     }
@@ -49,5 +53,7 @@ function checkName(name){
     }
 
 }
+
+
 
 export {addProject, deleteProject}

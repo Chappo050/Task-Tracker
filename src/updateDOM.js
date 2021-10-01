@@ -1,10 +1,10 @@
-import { deleteItem } from "./addItemFormManager";
+import { createAllItems, deleteItem } from "./addItemFormManager";
 import * as storage from './savingStorage';
 
 function refreshDisplay(array) {
+    clearContainers();
     displayTD(array);
     refreshProjectList();
-    console.log('added');
 }
 
 //Adds a new to do card to the current project
@@ -14,8 +14,6 @@ function displayTD(array) {
     const toDoContainer = document.getElementById('toDoContainer');
     const doingContainer = document.getElementById('doingContainer');
     const doneContainer = document.getElementById('doneContainer');
-
-    clearContainers(toDoContainer, doingContainer, doneContainer);
 
     //add all items back in
     array.forEach(element => {
@@ -56,7 +54,7 @@ function displayTD(array) {
         newCard.appendChild(itemPriority);
         newCard.appendChild(itemNote);
 
-        console.log('appending!!')
+
         if (element.status == 0){
             toDoContainer.appendChild(newCard)
         }
@@ -76,13 +74,17 @@ function createButton(element){
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.title = element.title;
-    console.log(btn.title)
     btn.onclick = function(){deleteItem(btn.title, 'savedItems')}
     return btn;
 }
 
 
-function clearContainers(todo, doing, done) {
+function clearContainers() {
+
+    const todo = document.getElementById('toDoContainer');
+    const doing = document.getElementById('doingContainer');
+    const done = document.getElementById('doneContainer');
+   
     console.log('clearing!');
     while (todo.firstChild) {
         todo.removeChild(todo.firstChild);
@@ -111,15 +113,20 @@ function refreshProjectList(){
         const projectName = element.name;
 
         const newLink = document.createElement('a');
-
+        
         newLink.href = "#";
         newLink.id = projectName;
         newLink.innerHTML = projectName;
-
+        
+        newLink.addEventListener('click', () =>{onMenuClick(projectName)})
 
         dropdown.appendChild(newLink);
     });
 }
 
+function onMenuClick(projectName) {
+    storage.setCurrentIndex(projectName);
+    createAllItems()
+}
 
 export {refreshDisplay, refreshProjectList, clearContainers};

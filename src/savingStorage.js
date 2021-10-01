@@ -1,6 +1,9 @@
+import {ProjectList} from './TDObj'
+
 let itemArray = [];
 let currentIndex = 0;
 const projectStorageString = 'savedProjects';
+
 
 //Stolen code that allows the saving of objects to local storage
 Storage.prototype.setObj = function(key, obj) {
@@ -35,6 +38,7 @@ function setCurrentIndex(newName) {
     const allSavedProjects = getSavedProjects();
     const projectIndex = allSavedProjects.findIndex( item => item.name === newName );
     currentIndex = projectIndex;
+    console.log(`current index is ${currentIndex}`);
 }
 
 
@@ -42,4 +46,4 @@ function getCurrentIndex(){
     return currentIndex
 }
 
-export {getSavedProjects, setSavedProjects, getCurrentIndex, setCurrentIndex}
+export { getSavedProjects, setSavedProjects, getCurrentIndex, setCurrentIndex}
