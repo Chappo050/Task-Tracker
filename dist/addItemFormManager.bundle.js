@@ -95,16 +95,16 @@ function createItemsFromStorage(item, saveString){
     const priority = item.priority;
     const note = item.note;
 
-    let array = _savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedProjects();
+    let array = _savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedItems();
 
     console.log(title)
     var newItem = new _TDObj__WEBPACK_IMPORTED_MODULE_0__.ToDo(title, status, description, due, priority, note);
     array.push(newItem);
-    _savingStorage__WEBPACK_IMPORTED_MODULE_3__.setSavedProjects(saveString, array);
+    _savingStorage__WEBPACK_IMPORTED_MODULE_3__.setSavedItems(saveString, array);
 
 
     (0,_updateDOM__WEBPACK_IMPORTED_MODULE_1__.refreshDisplay)(array);
-    console.log(_savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedProjects());
+    console.log(_savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedItems());
 }
 
 function createNewItem(saveString) {
@@ -116,18 +116,18 @@ function createNewItem(saveString) {
     const note = document.getElementsByName('notes')[0];
     const priorityValue = handlePriority(priority.value);
 
-    let array = _savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedProjects();
+    let array = _savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedItems();
     
     //create new object using the form
 
     console.log(title)
     var newItem = new _TDObj__WEBPACK_IMPORTED_MODULE_0__.ToDo(title.value, status.value, description.value, due.value, priorityValue, note.value);
     array.push(newItem);
-    _savingStorage__WEBPACK_IMPORTED_MODULE_3__.setSavedProjects(saveString, array);
+    _savingStorage__WEBPACK_IMPORTED_MODULE_3__.setSavedItems(saveString, array);
 
 
     (0,_updateDOM__WEBPACK_IMPORTED_MODULE_1__.refreshDisplay)(array);
-    console.log(_savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedProjects());
+    console.log(_savingStorage__WEBPACK_IMPORTED_MODULE_3__.getSavedItems());
     clearForm(title, status, description, due, priority, note);
 }
 
@@ -156,7 +156,7 @@ function deleteItem(title, saveString){
     // remove object
     console.log(array.length);
     array.splice( removeTitle, 1 );
-    _savingStorage__WEBPACK_IMPORTED_MODULE_3__.setSavedProjects(saveString, array)
+    _savingStorage__WEBPACK_IMPORTED_MODULE_3__.setSavedItems(saveString, array)
     console.log(array.length);
     (0,_updateDOM__WEBPACK_IMPORTED_MODULE_1__.refreshDisplay)(array)
 }
@@ -250,8 +250,8 @@ window.onclick = function(event) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setSavedProjects": () => (/* binding */ setSavedProjects),
-/* harmony export */   "getSavedProjects": () => (/* binding */ getSavedProjects),
+/* harmony export */   "setSavedItems": () => (/* binding */ setSavedItems),
+/* harmony export */   "getSavedItems": () => (/* binding */ getSavedItems),
 /* harmony export */   "getItems": () => (/* binding */ getItems),
 /* harmony export */   "getProjects": () => (/* binding */ getProjects),
 /* harmony export */   "setItems": () => (/* binding */ setItems),
@@ -269,13 +269,13 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 
-function setSavedProjects(string, array) {
+function setSavedItems(string, array) {
     if (array) {
         localStorage.setObj(string, array) //Key is not the obj key but the key to save shit under
         };
 }
 
-function getSavedProjects(string) {
+function getSavedItems(string) {
 
     if (localStorage.getObj(string)){
         return localStorage.getObj(string);

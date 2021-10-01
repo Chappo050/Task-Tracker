@@ -9,8 +9,8 @@ const saveString = 'savedItems';
 function component(){
     //load array
     loadButtons();
-    console.log(storage.getSavedProjects(saveString));
-    createAllItems(storage.getSavedProjects(saveString), saveString)
+    console.log(storage.getSavedItems(saveString));
+    createAllItems(storage.getSavedItems(saveString), saveString)
 }
 
 component();

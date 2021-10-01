@@ -1,5 +1,6 @@
 let itemArray = [];
 let projectArray = []
+const projectStorageString = 'savedProjects';
 
 //Stolen code that allows the saving of objects to local storage
 Storage.prototype.setObj = function(key, obj) {
@@ -10,13 +11,31 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 
-function setSavedProjects(string, array) {
+function setSavedItems(string, array) {
     if (array) {
         localStorage.setObj(string, array) //Key is not the obj key but the key to save shit under
         };
 }
 
-function getSavedProjects(string) {
+function setSavedProjects(array) {
+    if (array) {
+        localStorage.setObj(projectStorageString, array) //Key is not the obj key but the key to save shit under
+        };
+}
+function getSavedProjects() {
+
+    if (localStorage.getObj(projectStorageString)){
+        return localStorage.getObj(projectStorageString);
+    }
+
+    else{
+        console.log('nothing to return');
+        return itemArray;
+    }
+ //Acces the key the library has been saved to
+}
+
+function getSavedItems(string) {
 
     if (localStorage.getObj(string)){
         return localStorage.getObj(string);
@@ -46,4 +65,4 @@ function setProjects(array){
 }
 
 
-export {setSavedProjects, getSavedProjects, getItems, getProjects, setItems, setProjects}
+export {getSavedProjects, setSavedProjects, setSavedItems, getSavedItems, getItems, getProjects, setItems, setProjects}

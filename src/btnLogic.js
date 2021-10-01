@@ -1,5 +1,6 @@
 import * as storage from './savingStorage';
 import {createNewItem} from './addItemFormManager';
+import {addProject} from './projectHandling';
 
 function loadButtons() {
     const addItemBtn = document.getElementById('addItemBtn')
@@ -13,6 +14,9 @@ function loadButtons() {
 
     const projectList = document.getElementById("myDropdownBtn");
     projectList.addEventListener('click', toggleProjectList);
+
+    const addProjectBtn = document.getElementById('AddProject');
+    addProjectBtn.addEventListener('click', addProject);
 }
 
 function openForm() {

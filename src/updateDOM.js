@@ -68,7 +68,6 @@ function displayTD(array) {
         
     });
 
-
 }
 
 function createButton(element){

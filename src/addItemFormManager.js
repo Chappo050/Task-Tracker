@@ -19,16 +19,16 @@ function createItemsFromStorage(item, saveString){
     const priority = item.priority;
     const note = item.note;
 
-    let array = storage.getSavedProjects();
+    let array = storage.getSavedItems();
 
     console.log(title)
     var newItem = new ToDo(title, status, description, due, priority, note);
     array.push(newItem);
-    storage.setSavedProjects(saveString, array);
+    storage.setSavedItems(saveString, array);
 
 
     refreshDisplay(array);
-    console.log(storage.getSavedProjects());
+    console.log(storage.getSavedItems());
 }
 
 function createNewItem(saveString) {
@@ -40,18 +40,18 @@ function createNewItem(saveString) {
     const note = document.getElementsByName('notes')[0];
     const priorityValue = handlePriority(priority.value);
 
-    let array = storage.getSavedProjects();
+    let array = storage.getSavedItems();
     
     //create new object using the form
 
     console.log(title)
     var newItem = new ToDo(title.value, status.value, description.value, due.value, priorityValue, note.value);
     array.push(newItem);
-    storage.setSavedProjects(saveString, array);
+    storage.setSavedItems(saveString, array);
 
 
     refreshDisplay(array);
-    console.log(storage.getSavedProjects());
+    console.log(storage.getSavedItems());
     clearForm(title, status, description, due, priority, note);
 }
 
@@ -80,7 +80,7 @@ function deleteItem(title, saveString){
     // remove object
     console.log(array.length);
     array.splice( removeTitle, 1 );
-    storage.setSavedProjects(saveString, array)
+    storage.setSavedItems(saveString, array)
     console.log(array.length);
     refreshDisplay(array)
 }

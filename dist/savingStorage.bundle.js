@@ -39,8 +39,8 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setSavedProjects": () => (/* binding */ setSavedProjects),
-/* harmony export */   "getSavedProjects": () => (/* binding */ getSavedProjects),
+/* harmony export */   "setSavedItems": () => (/* binding */ setSavedItems),
+/* harmony export */   "getSavedItems": () => (/* binding */ getSavedItems),
 /* harmony export */   "getItems": () => (/* binding */ getItems),
 /* harmony export */   "getProjects": () => (/* binding */ getProjects),
 /* harmony export */   "setItems": () => (/* binding */ setItems),
@@ -58,13 +58,13 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 
-function setSavedProjects(string, array) {
+function setSavedItems(string, array) {
     if (array) {
         localStorage.setObj(string, array) //Key is not the obj key but the key to save shit under
         };
 }
 
-function getSavedProjects(string) {
+function getSavedItems(string) {
 
     if (localStorage.getObj(string)){
         return localStorage.getObj(string);

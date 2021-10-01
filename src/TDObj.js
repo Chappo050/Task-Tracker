@@ -1,11 +1,10 @@
 import {deleteItem} from "./addItemFormManager"
 
-function ProjectList(name, items){
+function ProjectList(name = 'New Project', items = []){
         const obj = this;
 
         this.name = name;
         this.items = items;
-        this.addItem = (newItem) => items.push(newItem);
 }
 
 
