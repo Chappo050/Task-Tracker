@@ -15,7 +15,7 @@ function displayTD(array) {
     const doingContainer = document.getElementById('doingContainer');
     const doneContainer = document.getElementById('doneContainer');
 
-    clearnContainers(toDoContainer, doingContainer, doneContainer);
+    clearContainers(toDoContainer, doingContainer, doneContainer);
 
     //add all items back in
     array.forEach(element => {
@@ -56,7 +56,7 @@ function displayTD(array) {
         newCard.appendChild(itemPriority);
         newCard.appendChild(itemNote);
 
-
+        console.log('appending!!')
         if (element.status == 0){
             toDoContainer.appendChild(newCard)
         }
@@ -82,7 +82,8 @@ function createButton(element){
 }
 
 
-function clearnContainers(todo, doing, done) {
+function clearContainers(todo, doing, done) {
+    console.log('clearing!');
     while (todo.firstChild) {
         todo.removeChild(todo.firstChild);
     }
@@ -121,4 +122,4 @@ function refreshProjectList(){
 }
 
 
-export {refreshDisplay, refreshProjectList};
+export {refreshDisplay, refreshProjectList, clearContainers};

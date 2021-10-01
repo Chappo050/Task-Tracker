@@ -1,5 +1,5 @@
 let itemArray = [];
-let projectArray = []
+let currentIndex = 0;
 const projectStorageString = 'savedProjects';
 
 //Stolen code that allows the saving of objects to local storage
@@ -11,11 +11,6 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key))
 }
 
-function setSavedItems(string, array) {
-    if (array) {
-        localStorage.setObj(string, array) //Key is not the obj key but the key to save shit under
-        };
-}
 
 function setSavedProjects(array) {
     if (array) {
@@ -35,34 +30,16 @@ function getSavedProjects() {
  //Acces the key the library has been saved to
 }
 
-function getSavedItems(string) {
-
-    if (localStorage.getObj(string)){
-        return localStorage.getObj(string);
-    }
-
-    else{
-        return itemArray;
-    }
- //Acces the key the library has been saved to
-}
-
-function getItems(){
-    return itemArray
+function setCurrentIndex(newName) {
+    //figure out a way to set the ID
+    const allSavedProjects = getSavedProjects();
+    const projectIndex = allSavedProjects.findIndex( item => item.name === newName );
+    currentIndex = projectIndex;
 }
 
 
-function setItems(array){
-    itemArray = array;
+function getCurrentIndex(){
+    return currentIndex
 }
 
-function getProjects(){
-    return projectArray
-}
-
-function setProjects(array){
-    projectArray = array;
-}
-
-
-export {getSavedProjects, setSavedProjects, setSavedItems, getSavedItems, getItems, getProjects, setItems, setProjects}
+export {getSavedProjects, setSavedProjects, getCurrentIndex, setCurrentIndex}

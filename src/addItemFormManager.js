@@ -4,34 +4,15 @@ import {closeForm} from "./btnLogic";
 import * as storage from './savingStorage';
 
 //loop through all items in the array and create (but not make new objects)
-function createAllItems(array, saveString){
-    array.forEach(item => {
-        console.log("hello")
-        createItemsFromStorage(item, saveString);
+function createAllItems(currentProject){
+    currentProject.forEach(item => {
+        console.log(`the current length is ${currentProject.length}`)
+        refreshDisplay(currentProject);
     });  
     }
 
-function createItemsFromStorage(item, saveString){
-    const title = item.title;
-    const status = item.status;
-    const description = item.description;
-    const due = item.due;
-    const priority = item.priority;
-    const note = item.note;
 
-    let array = storage.getSavedItems();
-
-    console.log(title)
-    var newItem = new ToDo(title, status, description, due, priority, note);
-    array.push(newItem);
-    storage.setSavedItems(saveString, array);
-
-
-    refreshDisplay(array);
-    console.log(storage.getSavedItems());
-}
-
-function createNewItem(saveString) {
+function createNewItem() {
     const title = document.getElementsByName('title')[0];
     const status = document.getElementsByName('status')[0];
     const description = document.getElementsByName('desc')[0];
@@ -40,18 +21,19 @@ function createNewItem(saveString) {
     const note = document.getElementsByName('notes')[0];
     const priorityValue = handlePriority(priority.value);
 
-    let array = storage.getSavedItems();
-    
+    const index = storage.getCurrentIndex()
+    let allSavedProjects = storage.getSavedProjects();
+    let currentProjectItems = allSavedProjects[index].items;
+
     //create new object using the form
-
-    console.log(title)
     var newItem = new ToDo(title.value, status.value, description.value, due.value, priorityValue, note.value);
-    array.push(newItem);
-    storage.setSavedItems(saveString, array);
+    currentProjectItems.push(newItem);
+    allSavedProjects[index].items = currentProjectItems;
+    storage.setSavedProjects(allSavedProjects);
 
 
-    refreshDisplay(array);
-    console.log(storage.getSavedItems());
+    refreshDisplay(allSavedProjects[index].items);
+
     clearForm(title, status, description, due, priority, note);
 }
 
@@ -72,17 +54,19 @@ function handlePriority(value){
     else if (value == 2) {return "HIGH"}
 }
 
-function deleteItem(title, saveString){
-    const array = storage.getItems();
-    const removeTitle = array.findIndex( item => item.title === title );
+function deleteItem(title){
+    const index = storage.getCurrentIndex()
+    let allSavedProjects = storage.getSavedProjects();
+    let currentProjectItems = allSavedProjects[index].items;
+    const removeTitle = currentProjectItems.findIndex( item => item.title === title );
     console.log(`deleting item ${title}`)
 
     // remove object
-    console.log(array.length);
-    array.splice( removeTitle, 1 );
-    storage.setSavedItems(saveString, array)
-    console.log(array.length);
-    refreshDisplay(array)
+    console.log(currentProjectItems.length);
+    currentProjectItems.splice( removeTitle, 1 );
+    allSavedProjects[index].items = currentProjectItems;
+    storage.setSavedProjects(allSavedProjects);
+    refreshDisplay(allSavedProjects[index].items)
 }
 
 

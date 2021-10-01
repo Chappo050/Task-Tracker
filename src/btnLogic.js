@@ -1,4 +1,3 @@
-import * as storage from './savingStorage';
 import {createNewItem} from './addItemFormManager';
 import {addProject, deleteProject} from './projectHandling';
 
